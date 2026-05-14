@@ -115,7 +115,6 @@
   </style>
 </head>
 <body>
-
 <header>
   <div class="header-inner">
     <div class="logo">Benjamin<span>Hashi</span></div>
