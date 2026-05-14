@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="nl">
 <head>
   <meta charset="UTF-8" />
@@ -7,7 +8,11 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
 
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
     :root {
       --bg: #F7F5F0;
@@ -31,7 +36,6 @@
       font-family: 'DM Sans', sans-serif;
       background: var(--bg);
       color: var(--text);
-      font-size: 16px;
       line-height: 1.7;
     }
 
@@ -50,10 +54,10 @@
       max-width: 860px;
       margin: 0 auto;
       padding: 0 2rem;
+      height: 64px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      height: 64px;
     }
 
     .logo {
@@ -87,13 +91,13 @@
     .hero {
       background: var(--surface);
       border-bottom: 1px solid var(--border);
-      padding: 4rem 2rem;
+      padding: 3.5rem 2rem;
       text-align: center;
     }
 
     .hero h1 {
       font-family: 'Playfair Display', serif;
-      font-size: 3rem;
+      font-size: 2.8rem;
       margin-bottom: 1rem;
     }
 
@@ -188,7 +192,6 @@
       padding: 1rem;
     }
 
-    /* TAGS */
     .tag {
       font-size: 11px;
       padding: 4px 10px;
@@ -200,10 +203,32 @@
     .tag-sport { background: var(--tag-sport-bg); color: var(--tag-sport-color); }
     .tag-boek { background: var(--tag-boek-bg); color: var(--tag-boek-color); }
 
+    /* POST */
+    .post-detail {
+      display: none;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .post-detail.open {
+      display: block;
+    }
+
+    .back-btn {
+      cursor: pointer;
+      color: var(--muted);
+      margin-bottom: 1rem;
+      display: inline-block;
+    }
+
     /* MOBILE APP STYLE */
     @media (max-width: 640px) {
 
-      .header-inner {
+      .header-inner,
+      .container {
         padding: 0 1rem;
       }
 
@@ -215,13 +240,8 @@
         font-size: 28px;
       }
 
-      .container {
-        padding: 1.2rem 1rem;
-      }
-
       .featured {
         grid-template-columns: 1fr;
-        border-radius: 18px;
       }
 
       .grid {
@@ -230,9 +250,9 @@
       }
 
       nav a {
-        padding: 8px 12px;
-        border-radius: 999px;
         background: rgba(0,0,0,0.04);
+        border-radius: 999px;
+        padding: 8px 12px;
       }
 
       nav a.active {
@@ -240,7 +260,6 @@
         color: white;
       }
     }
-
   </style>
 </head>
 
@@ -264,58 +283,94 @@
 
 <main class="container">
 
-  <div class="section-header">
-    <span class="section-label">Uitgelicht</span>
-    <div class="section-line"></div>
+  <div id="post-detail" class="post-detail">
+    <span class="back-btn" onclick="closePost()">← Terug</span>
+    <div id="post-content"></div>
   </div>
 
-  <article class="featured" onclick="openPost('achilles')">
-    <div class="featured-visual">🏃</div>
-    <div class="featured-body">
-      <span class="tag tag-sport">Sport</span>
-      <h2>Achillesblessure verhaal</h2>
+  <div id="overview">
+
+    <div class="section-header">
+      <span class="section-label">Uitgelicht</span>
+      <div class="section-line"></div>
     </div>
-  </article>
 
-  <div class="section-header">
-    <span class="section-label">Posts</span>
-    <div class="section-line"></div>
-  </div>
-
-  <div class="grid" id="post-grid">
-
-    <article class="card" data-type="sport" onclick="openPost('wfl')">
-      <div class="card-thumb thumb-sport">💪</div>
-      <div class="card-body">
+    <article class="featured" onclick="openPost('achilles')">
+      <div class="featured-visual">🏃</div>
+      <div class="featured-body">
         <span class="tag tag-sport">Sport</span>
-        <h3>WFL Run</h3>
+        <h2>Achilles blessure verhaal</h2>
       </div>
     </article>
 
-    <article class="card" data-type="boek" onclick="openPost('camus')">
-      <div class="card-thumb thumb-boek">📖</div>
-      <div class="card-body">
-        <span class="tag tag-boek">Boek</span>
-        <h3>The Stranger</h3>
-      </div>
-    </article>
+    <div class="section-header">
+      <span class="section-label">Posts</span>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="grid" id="post-grid">
+
+      <article class="card" data-type="sport" onclick="openPost('wfl')">
+        <div class="card-thumb thumb-sport">💪</div>
+        <div class="card-body">
+          <span class="tag tag-sport">Sport</span>
+          <h3>WFL Run</h3>
+        </div>
+      </article>
+
+      <article class="card" data-type="boek" onclick="openPost('camus')">
+        <div class="card-thumb thumb-boek">📖</div>
+        <div class="card-body">
+          <span class="tag tag-boek">Boek</span>
+          <h3>The Stranger</h3>
+        </div>
+      </article>
+
+    </div>
 
   </div>
 
 </main>
 
 <script>
-function openPost(id){ alert("Post: " + id); }
+const posts = {
+  achilles: {
+    html: `<h2>Achilles blessure</h2><p>Verhaal...</p>`
+  },
+  wfl: {
+    html: `<h2>WFL Run</h2><p>Verslag...</p>`
+  },
+  camus: {
+    html: `<h2>The Stranger</h2><p>Boekverslag...</p>`
+  }
+};
+
+function openPost(id) {
+  const post = posts[id];
+  if (!post) return;
+
+  document.getElementById('post-content').innerHTML = post.html;
+  document.getElementById('post-detail').classList.add('open');
+  document.getElementById('overview').style.display = 'none';
+  window.scrollTo({ top: 0 });
+}
+
+function closePost() {
+  document.getElementById('post-detail').classList.remove('open');
+  document.getElementById('overview').style.display = 'block';
+}
+
 function filterPosts(e,type){
   e.preventDefault();
-  document.querySelectorAll(".card").forEach(c=>{
-    c.style.display = c.dataset.type===type ? "block":"none";
+  document.querySelectorAll('.card').forEach(c=>{
+    c.style.display = c.dataset.type===type ? 'block':'none';
   });
 }
+
 function showAll(e){
   e.preventDefault();
-  document.querySelectorAll(".card").forEach(c=>{
-    c.style.display="block";
+  document.querySelectorAll('.card').forEach(c=>{
+    c.style.display='block';
   });
 }
 </script>
