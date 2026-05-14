@@ -103,13 +103,15 @@
     footer { border-top: 1px solid var(--border); text-align: center; padding: 2rem; font-size: 13px; color: var(--muted); }
 
     /* Responsive */
-    @media (max-width: 640px) {
-      .featured { grid-template-columns: 1fr; }
-      .featured-visual { min-height: 160px; }
-      .header-inner { padding: 0 1rem; }
-      .container { padding: 2rem 1rem; }
-      nav a { padding: 6px 10px; }
-    }
+@media (max-width: 640px) {
+  .header-inner { padding: 0 1rem; }
+  .container { padding: 2rem 1rem; }
+  .hero-inner { padding: 3rem 1rem 2.5rem; }
+  .featured { grid-template-columns: 1fr; }
+  .featured-visual { min-height: 160px; }
+  nav { flex-wrap: wrap; gap: 6px; }
+  nav a { padding: 6px 10px; }
+}
   </style>
 </head>
 <body>
