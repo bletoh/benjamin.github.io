@@ -25,7 +25,7 @@
 
     /* Header */
     header { background: var(--surface); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
-    .header-inner { max-width: 860px; margin: 0 auto; padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 64px; }
+    .header-inner { max-width: 860px; margin: 0 auto; padding: 0 2rem; display: flex; align-items: center; gap: 2rem; justify-content: flex-start; height: 64px; }
     .logo { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 600; color: var(--text); letter-spacing: -0.3px; }
     .logo span { color: var(--accent); }
     nav { display: flex; gap: 8px; }
@@ -33,7 +33,7 @@
     nav a:hover, nav a.active { background: var(--bg); color: var(--text); }
 
     /* Hero */
-    .hero { background: var(--surface); border-bottom: 1px solid var(--border); padding: 4rem 2rem 3.5rem; text-align: center; }
+    .hero { background: var(--surface); border-bottom: 1px solid var(--border); } .hero-inner { max-width: 860px; margin: 0 auto; padding: 4rem 2rem 3.5rem; text-align: center; }
     .hero-eyebrow { font-size: 12px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; }
     .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 600; line-height: 1.2; color: var(--text); margin-bottom: 1rem; letter-spacing: -0.5px; }
     .hero p { font-size: 17px; color: var(--muted); max-width: 520px; margin: 0 auto; font-weight: 300; }
@@ -126,9 +126,11 @@
 </header>
 
 <section class="hero">
-  <div class="hero-eyebrow">Persoonlijke blog</div>
-  <h1>Sport & Boekverslagen</h1>
-  <p>Mijn ervaringen met trainen en lezen</p>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Persoonlijke blog</div>
+    <h1>Sport & Boekverslagen</h1>
+    <p>Mijn ervaringen met trainen en lezen</p>
+  </div>
 </section>
 
 <main class="container">
