@@ -62,37 +62,6 @@
       color: #fff;
     }
 
-    /* Hero */
-    .hero {
-      background: var(--surface);
-      border-bottom: 1px solid var(--border);
-      padding: 5rem 1.25rem 2rem;
-      text-align: center;
-    }
-    .hero-eyebrow {
-      font-size: 11px;
-      font-weight: 500;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 0.75rem;
-    }
-    .hero h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(1.6rem, 6vw, 3.2rem);
-      font-weight: 600;
-      line-height: 1.2;
-      color: var(--text);
-      margin-bottom: 0.75rem;
-      letter-spacing: -0.5px;
-    }
-    .hero p {
-      font-size: 15px;
-      color: var(--muted);
-      max-width: 520px;
-      margin: 0 auto;
-      font-weight: 300;
-    }
 
     /* Layout */
     .container { max-width: 860px; margin: 0 auto; padding: 2rem 1rem; }
@@ -269,10 +238,6 @@
   </div>
 </header>
 
-<section class="hero">
-  <div class="hero-eyebrow">Persoonlijke blog</div>
-  <p>Boek & Hardloopverslagen</p>
-</section>
 
 <main class="container">
 
