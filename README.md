@@ -23,46 +23,50 @@
     body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); font-size: 16px; line-height: 1.7; }
     a { color: inherit; text-decoration: none; }
 
-    /* Header — nav only */
+    /* Header — floating pill */
     header {
-      background: var(--surface);
-      border-bottom: 1px solid var(--border);
-      position: sticky;
-      top: 0;
+      position: fixed;
+      top: 16px;
+      left: 50%;
+      transform: translateX(-50%);
       z-index: 100;
+      background: transparent;
+      border: none;
+      pointer-events: none;
     }
     .header-inner {
-      max-width: 860px;
-      margin: 0 auto;
-      padding: 0 1rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 52px;
+      pointer-events: auto;
     }
     nav {
       display: flex;
-      gap: 6px;
+      gap: 2px;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 4px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.10);
     }
     nav a {
-      font-size: 14px;
+      font-size: 13px;
       font-weight: 500;
       color: var(--muted);
-      padding: 7px 18px;
-      border-radius: 20px;
+      padding: 6px 16px;
+      border-radius: 999px;
       transition: background 0.15s, color 0.15s;
       white-space: nowrap;
     }
     nav a:hover, nav a.active {
-      background: var(--bg);
-      color: var(--text);
+      background: var(--text);
+      color: #fff;
     }
 
     /* Hero */
     .hero {
       background: var(--surface);
       border-bottom: 1px solid var(--border);
-      padding: 2.5rem 1.25rem 2rem;
+      padding: 5rem 1.25rem 2rem;
       text-align: center;
     }
     .hero-eyebrow {
@@ -267,8 +271,7 @@
 
 <section class="hero">
   <div class="hero-eyebrow">Persoonlijke blog</div>
-  <h1>Sport & Boekverslagen</h1>
-  <p>Mijn ervaringen met trainen en lezen</p>
+  <p>Boek & Hardloopverslagen</p>
 </section>
 
 <main class="container">
