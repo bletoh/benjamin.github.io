@@ -138,21 +138,55 @@
     .btn { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 500; padding: 9px 18px; border-radius: 8px; border: 1px solid var(--border); background: var(--bg); color: var(--text); cursor: pointer; transition: background 0.15s; width: fit-content; }
     .btn:hover { background: var(--border); }
 
-    /* Grid */
+    /* Grid — Instagram-style square tiles */
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-      gap: 14px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 3px;
       margin-bottom: 2rem;
     }
-    .card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; overflow: hidden; transition: transform 0.2s, box-shadow 0.2s; cursor: pointer; }
-    .card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.07); }
-    .card-thumb { height: 100px; display: flex; align-items: center; justify-content: center; font-size: 38px; }
+    .card {
+      background: var(--surface);
+      border-radius: 0;
+      overflow: hidden;
+      cursor: pointer;
+      position: relative;
+      aspect-ratio: 1 / 1;
+    }
+    .card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0);
+      transition: background 0.2s;
+    }
+    .card:hover::after { background: rgba(0,0,0,0.08); }
+    .card-thumb {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 36px;
+    }
     .thumb-sport { background: linear-gradient(135deg, #d4f0e4, #a8dfc6); }
     .thumb-boek  { background: linear-gradient(135deg, #e4e0f8, #c8c0f0); }
-    .card-body { padding: 1rem 1.1rem 1.1rem; }
-    .card-body h3 { font-family: 'Playfair Display', serif; font-size: 15px; font-weight: 600; line-height: 1.35; margin-bottom: 5px; }
-    .card-body p { font-size: 13px; color: var(--muted); font-weight: 300; line-height: 1.55; margin-bottom: 10px; }
+    .card-body {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 8px 10px;
+      background: linear-gradient(to top, rgba(0,0,0,0.45) 0%, transparent 100%);
+      z-index: 1;
+    }
+    .card-body h3 {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      line-height: 1.3;
+      color: #fff;
+      margin-bottom: 0;
+    }
+    .card-body p, .card-body .post-meta, .card-body .tag { display: none; }
 
     /* Post detail */
     .post-detail { display: none; background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 1.75rem; margin-bottom: 2rem; animation: fadeIn 0.25s ease; }
@@ -201,9 +235,10 @@
         display: none; /* keep card compact on mobile */
       }
 
-      /* Grid: single column on small screens */
+      /* Grid: 2-col on small screens for Instagram feel */
       .grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2px;
       }
 
       /* About strip: stack on very small */
