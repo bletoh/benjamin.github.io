@@ -1,7 +1,7 @@
 <html lang="nl">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
   <title>Benjamin Hashi — Sport & Boekverslagen</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
   <style>
@@ -23,92 +23,233 @@
     body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); font-size: 16px; line-height: 1.7; }
     a { color: inherit; text-decoration: none; }
 
-    /* Header */
-    header { background: var(--surface); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
-    .header-inner { max-width: 860px; margin: 0 auto; padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 64px; }
-    .logo { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 600; color: var(--text); letter-spacing: -0.3px; }
-    .logo span { color: var(--accent); }
-    nav { display: flex; gap: 8px; }
-    nav a { font-size: 14px; color: var(--muted); padding: 6px 14px; border-radius: 20px; transition: background 0.15s, color 0.15s; }
-    nav a:hover, nav a.active { background: var(--bg); color: var(--text); }
+    /* Header — nav only */
+    header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .header-inner {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 52px;
+    }
+    nav {
+      display: flex;
+      gap: 6px;
+    }
+    nav a {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--muted);
+      padding: 7px 18px;
+      border-radius: 20px;
+      transition: background 0.15s, color 0.15s;
+      white-space: nowrap;
+    }
+    nav a:hover, nav a.active {
+      background: var(--bg);
+      color: var(--text);
+    }
 
     /* Hero */
-    .hero { background: var(--surface); border-bottom: 1px solid var(--border); padding: 4rem 2rem 3.5rem; text-align: center; }
-    .hero-eyebrow { font-size: 12px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; }
-    .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 600; line-height: 1.2; color: var(--text); margin-bottom: 1rem; letter-spacing: -0.5px; }
-    .hero p { font-size: 17px; color: var(--muted); max-width: 520px; margin: 0 auto; font-weight: 300; }
+    .hero {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 2.5rem 1.25rem 2rem;
+      text-align: center;
+    }
+    .hero-eyebrow {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.6rem, 6vw, 3.2rem);
+      font-weight: 600;
+      line-height: 1.2;
+      color: var(--text);
+      margin-bottom: 0.75rem;
+      letter-spacing: -0.5px;
+    }
+    .hero p {
+      font-size: 15px;
+      color: var(--muted);
+      max-width: 520px;
+      margin: 0 auto;
+      font-weight: 300;
+    }
 
     /* Layout */
-    .container { max-width: 860px; margin: 0 auto; padding: 3rem 2rem; }
-    .section-header { display: flex; align-items: center; gap: 12px; margin-bottom: 1.5rem; }
-    .section-label { font-size: 11px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); }
+    .container { max-width: 860px; margin: 0 auto; padding: 2rem 1rem; }
+    .section-header { display: flex; align-items: center; gap: 12px; margin-bottom: 1.25rem; }
+    .section-label { font-size: 11px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); white-space: nowrap; }
     .section-line { flex: 1; height: 1px; background: var(--border); }
 
     /* Featured */
-    .featured { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; margin-bottom: 3rem; display: grid; grid-template-columns: 1fr 1fr; cursor: pointer; transition: box-shadow 0.2s; }
+    .featured {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      margin-bottom: 2rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      cursor: pointer;
+      transition: box-shadow 0.2s;
+    }
     .featured:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.07); }
-    .featured-visual { background: linear-gradient(135deg, #2D6A4F 0%, #1B4332 100%); min-height: 280px; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
-    .featured-visual::before { content: ''; position: absolute; width: 200px; height: 200px; border: 40px solid rgba(255,255,255,0.06); border-radius: 50%; top: -40px; left: -40px; }
-    .featured-visual::after { content: ''; position: absolute; width: 160px; height: 160px; border: 30px solid rgba(255,255,255,0.04); border-radius: 50%; bottom: -30px; right: -30px; }
-    .featured-icon { font-size: 64px; position: relative; z-index: 1; }
-    .featured-body { padding: 2rem; display: flex; flex-direction: column; justify-content: center; }
-    .featured-body h2 { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 600; line-height: 1.3; margin-bottom: 10px; letter-spacing: -0.3px; }
-    .featured-body p { font-size: 15px; color: var(--muted); font-weight: 300; margin-bottom: 1.5rem; line-height: 1.65; }
+    .featured-visual {
+      background: linear-gradient(135deg, #2D6A4F 0%, #1B4332 100%);
+      min-height: 220px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .featured-visual::before {
+      content: '';
+      position: absolute;
+      width: 200px; height: 200px;
+      border: 40px solid rgba(255,255,255,0.06);
+      border-radius: 50%;
+      top: -40px; left: -40px;
+    }
+    .featured-visual::after {
+      content: '';
+      position: absolute;
+      width: 160px; height: 160px;
+      border: 30px solid rgba(255,255,255,0.04);
+      border-radius: 50%;
+      bottom: -30px; right: -30px;
+    }
+    .featured-icon { font-size: 56px; position: relative; z-index: 1; }
+    .featured-body {
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .featured-body h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(16px, 3vw, 22px);
+      font-weight: 600;
+      line-height: 1.3;
+      margin-bottom: 8px;
+      letter-spacing: -0.3px;
+    }
+    .featured-body p {
+      font-size: 14px;
+      color: var(--muted);
+      font-weight: 300;
+      margin-bottom: 1.25rem;
+      line-height: 1.6;
+    }
 
     /* Tags */
-    .tag { display: inline-block; font-size: 11px; font-weight: 500; letter-spacing: 0.5px; padding: 4px 12px; border-radius: 20px; margin-bottom: 12px; }
+    .tag { display: inline-block; font-size: 11px; font-weight: 500; letter-spacing: 0.5px; padding: 4px 12px; border-radius: 20px; margin-bottom: 10px; }
     .tag-sport { background: var(--tag-sport-bg); color: var(--tag-sport-color); }
     .tag-boek  { background: var(--tag-boek-bg);  color: var(--tag-boek-color); }
-    .post-meta { font-size: 12px; color: var(--muted); margin-bottom: 1.25rem; }
-    .btn { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 500; padding: 10px 20px; border-radius: 8px; border: 1px solid var(--border); background: var(--bg); color: var(--text); cursor: pointer; transition: background 0.15s; width: fit-content; }
+    .post-meta { font-size: 12px; color: var(--muted); margin-bottom: 1rem; }
+    .btn { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 500; padding: 9px 18px; border-radius: 8px; border: 1px solid var(--border); background: var(--bg); color: var(--text); cursor: pointer; transition: background 0.15s; width: fit-content; }
     .btn:hover { background: var(--border); }
 
     /* Grid */
-    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 16px; margin-bottom: 3rem; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 14px;
+      margin-bottom: 2rem;
+    }
     .card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; overflow: hidden; transition: transform 0.2s, box-shadow 0.2s; cursor: pointer; }
     .card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.07); }
-    .card-thumb { height: 110px; display: flex; align-items: center; justify-content: center; font-size: 40px; }
+    .card-thumb { height: 100px; display: flex; align-items: center; justify-content: center; font-size: 38px; }
     .thumb-sport { background: linear-gradient(135deg, #d4f0e4, #a8dfc6); }
     .thumb-boek  { background: linear-gradient(135deg, #e4e0f8, #c8c0f0); }
-    .card-body { padding: 1.1rem 1.25rem 1.25rem; }
-    .card-body h3 { font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 600; line-height: 1.35; margin-bottom: 6px; }
-    .card-body p { font-size: 13px; color: var(--muted); font-weight: 300; line-height: 1.55; margin-bottom: 12px; }
+    .card-body { padding: 1rem 1.1rem 1.1rem; }
+    .card-body h3 { font-family: 'Playfair Display', serif; font-size: 15px; font-weight: 600; line-height: 1.35; margin-bottom: 5px; }
+    .card-body p { font-size: 13px; color: var(--muted); font-weight: 300; line-height: 1.55; margin-bottom: 10px; }
 
     /* Post detail */
-    .post-detail { display: none; background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 2.5rem; margin-bottom: 3rem; animation: fadeIn 0.25s ease; }
+    .post-detail { display: none; background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 1.75rem; margin-bottom: 2rem; animation: fadeIn 0.25s ease; }
     @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
     .post-detail.open { display: block; }
     .back-btn { font-size: 13px; color: var(--muted); cursor: pointer; margin-bottom: 1.5rem; display: inline-flex; align-items: center; gap: 6px; }
     .back-btn:hover { color: var(--text); }
-    .post-detail h2 { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 600; line-height: 1.2; margin-bottom: 8px; letter-spacing: -0.4px; }
-    .post-detail .body { margin-top: 1.5rem; }
-    .post-detail .body h3 { font-size: 17px; font-weight: 500; margin: 1.5rem 0 0.5rem; }
+    .post-detail h2 { font-family: 'Playfair Display', serif; font-size: clamp(20px, 5vw, 28px); font-weight: 600; line-height: 1.2; margin-bottom: 8px; letter-spacing: -0.4px; }
+    .post-detail .body { margin-top: 1.25rem; }
+    .post-detail .body h3 { font-size: 16px; font-weight: 500; margin: 1.5rem 0 0.5rem; }
     .post-detail .body p { font-size: 15px; line-height: 1.75; margin-bottom: 1rem; color: #3a3a36; }
     .post-detail .body ul { padding-left: 1.25rem; margin-bottom: 1rem; }
     .post-detail .body li { font-size: 15px; line-height: 1.7; color: #3a3a36; margin-bottom: 4px; }
 
     /* Table */
     .schedule-table { width: 100%; border-collapse: collapse; margin: 1rem 0 1.5rem; font-size: 14px; }
-    .schedule-table th { background: var(--bg); text-align: left; padding: 8px 12px; font-weight: 500; border-bottom: 1px solid var(--border); }
-    .schedule-table td { padding: 8px 12px; border-bottom: 1px solid var(--border); color: #3a3a36; }
+    .schedule-table th { background: var(--bg); text-align: left; padding: 8px 10px; font-weight: 500; border-bottom: 1px solid var(--border); }
+    .schedule-table td { padding: 8px 10px; border-bottom: 1px solid var(--border); color: #3a3a36; }
     .schedule-table tr:last-child td { border-bottom: none; }
 
     /* About */
-    .about-strip { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 2rem; display: flex; align-items: center; gap: 1.5rem; margin-bottom: 2rem; }
-    .avatar { width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg, #2D6A4F, #4A3580); display: flex; align-items: center; justify-content: center; font-size: 24px; flex-shrink: 0; }
+    .about-strip { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 1.5rem; display: flex; align-items: center; gap: 1.25rem; margin-bottom: 1.5rem; }
+    .avatar { width: 52px; height: 52px; border-radius: 50%; background: linear-gradient(135deg, #2D6A4F, #4A3580); display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0; }
     .about-strip p { font-size: 14px; color: var(--muted); font-weight: 300; line-height: 1.6; }
     .about-strip strong { color: var(--text); font-weight: 500; }
 
     /* Footer */
-    footer { border-top: 1px solid var(--border); text-align: center; padding: 2rem; font-size: 13px; color: var(--muted); }
+    footer { border-top: 1px solid var(--border); text-align: center; padding: 1.5rem; font-size: 13px; color: var(--muted); }
 
-    /* Responsive */
-    @media (max-width: 640px) {
-      .featured { grid-template-columns: 1fr; }
-      .featured-visual { min-height: 160px; }
-      .header-inner { padding: 0 1rem; }
-      .container { padding: 2rem 1rem; }
-      nav a { padding: 6px 10px; }
+    /* ── Mobile ── */
+    @media (max-width: 600px) {
+      /* Featured: stack vertically on mobile */
+      .featured {
+        grid-template-columns: 1fr;
+      }
+      .featured-visual {
+        min-height: 140px;
+      }
+      .featured-icon {
+        font-size: 48px;
+      }
+      .featured-body {
+        padding: 1.25rem;
+      }
+      .featured-body p {
+        display: none; /* keep card compact on mobile */
+      }
+
+      /* Grid: single column on small screens */
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      /* About strip: stack on very small */
+      .about-strip {
+        flex-direction: column;
+        text-align: center;
+        gap: 0.75rem;
+      }
+
+      /* Table scroll on mobile */
+      .schedule-table-wrap {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .post-detail {
+        padding: 1.25rem;
+        border-radius: 12px;
+      }
     }
   </style>
 </head>
@@ -116,7 +257,6 @@
 
 <header>
   <div class="header-inner">
-    <div class="logo">Benjamin<span>Hashi</span></div>
     <nav>
       <a href="#" class="active" onclick="showAll(event)">Alles</a>
       <a href="#" onclick="filterPosts(event, 'sport')">Sport</a>
@@ -185,7 +325,7 @@
         </div>
       </article>
 
-    </div><!-- /grid -->
+    </div>
 
     <div class="about-strip">
       <div class="avatar">👤</div>
@@ -196,7 +336,7 @@
       </div>
     </div>
 
-  </div><!-- /overview -->
+  </div>
 
 </main>
 
@@ -216,6 +356,7 @@
           <p>Na weken weg te zijn geweest van het hardlopen vanwege een blessure ben ik veel te weten gekomen over de fysieke en mentale uitdagingen die komen kijken bij een blessure.</p>
           <h3>1. Alternatieve training</h3>
           <p>Om je conditie te houden is het belangrijk om je cardiovasculaire systeem te blijven uitdagen — bijvoorbeeld via fietsen, de crosstrainer of sauna.</p>
+          <div class="schedule-table-wrap">
           <table class="schedule-table">
             <thead><tr><th>Dag</th><th>Training</th><th>Duur</th></tr></thead>
             <tbody>
@@ -224,6 +365,7 @@
               <tr><td>Zondag</td><td>Sauna</td><td>2x ~20 min</td></tr>
             </tbody>
           </table>
+          </div>
           <h3>2. Het mentale aspect</h3>
           <p>Tijdens een blessure heb je altijd het gevoel dat je dagelijks conditie verliest, wat uiteindelijk niet het geval is wanneer je regelmatig bezig bent met alternatieve training. Het is ook altijd een leermoment om te reflecteren op wat je anders kunt doen wanneer je weer fit bent.</p>
           <h3>Mijn tips</h3>
